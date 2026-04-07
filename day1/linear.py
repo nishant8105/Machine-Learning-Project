@@ -35,7 +35,7 @@ max_x = np.max(x) + 1
 min_x = np.min(x) - 1
 
 x = np.linspace(min_x, max_x)
-y = (m * X) + c
+y = (m * x) + c
 
 plt.scatter(X,Y, color = '#043078', label='Data point')
 plt.plot(x, y, color='#8c250f', label='Regression Line', linestyle = '--')
