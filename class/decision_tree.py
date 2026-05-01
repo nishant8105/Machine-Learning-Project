@@ -91,25 +91,27 @@ class DecisionTreeScratch:
     def predict(self, X):
         return np.array([self._traverse(x, self.root) for x in X])
     
-from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 
-X, y = make_classification(
-    n_samples=500,
-    n_features=5,
-    random_state=42
-)
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42)
+if '__name__' == '__main__' :
+    from sklearn.datasets import make_classification
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import accuracy_score
 
-tree = DecisionTreeScratch(max_depth=5)
-tree.fit(X_train, y_train)
-preds = tree.predict(X_test)
-print("Accuracy:", accuracy_score(y_test, preds))
+    X, y = make_classification(
+        n_samples=500,
+        n_features=5,
+        random_state=42
+    )
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42)
 
-# Compare with sklearn
-from sklearn.tree import DecisionTreeClassifier
-sk_tree = DecisionTreeClassifier(max_depth=5, random_state=42)
-sk_tree.fit(X_train, y_train)
-print("Sklearn :", accuracy_score(y_test, sk_tree.predict(X_test)))
+    tree = DecisionTreeScratch(max_depth=5)
+    tree.fit(X_train, y_train)
+    preds = tree.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, preds))
+
+    # Compare with sklearn
+    from sklearn.tree import DecisionTreeClassifier
+    sk_tree = DecisionTreeClassifier(max_depth=5, random_state=42)
+    sk_tree.fit(X_train, y_train)
+    print("Sklearn :", accuracy_score(y_test, sk_tree.predict(X_test)))
